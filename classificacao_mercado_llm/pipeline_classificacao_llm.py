@@ -5,7 +5,7 @@ from typing import TypedDict
 from langgraph.graph import StateGraph, END
 from google.generativeai import configure, GenerativeModel
 
-GOOGLE_API_KEY = "AIzaSyB_X0AqfMMn6Mvpq3Fwqmk2CWbiYSgOtoI"
+GOOGLE_API_KEY = ""
 configure(api_key=GOOGLE_API_KEY)
 
 class MarketState(TypedDict):
