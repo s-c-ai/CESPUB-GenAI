@@ -1,6 +1,7 @@
 import re
 import json
 import pandas as pd
+from pathlib import Path
 from typing import TypedDict
 from langgraph.graph import StateGraph, END
 from google.generativeai import configure, GenerativeModel
@@ -232,6 +233,7 @@ def processar_excel(input_excel, output_excel, max_rows=None):
 
 
 if __name__ == "__main__":
-    entrada = r"C:\Users\normu\Downloads\Telegram Desktop\Cópia de Estudo de Mercado V.05.03.2025 (cnpj) (1).xlsx"
-    saida = "resultado_gemini_tabela_completa.xlsx"
+    pasta = Path("C:/Users/normu/Downloads/Telegram Desktop")
+    entrada = pasta / "Cópia de Estudo de Mercado V.05.03.2025 (cnpj) (1).xlsx"
+    saida = pasta / "resultado_gemini_tabela_completa.xlsx"
     processar_excel(entrada, saida, max_rows=None)
