@@ -1,0 +1,128 @@
+[
+    {
+        "name": "data",
+        "type": "INTEGER",
+        "mode": "NULLABLE",
+        "description": "Ano da informação"
+    },
+    {
+        "name": "orgao",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "Nome do órgão público"
+    },
+    {
+        "name": "uf",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "Unidade Federativa/Estados Brasileiros"
+    },
+    {
+        "name": "cnpj",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "CNPJ do órgão ou empresa"
+    },
+    {
+        "name": "cliente totvs ativo ou inativo",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "Status do cliente TOTVS"
+    },
+    {
+        "name": "objeto",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "Objeto da contratação"
+    },
+    {
+        "name": "descricao",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "Descrição resumida"
+    },
+    {
+        "name": "descricao_comp",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "Descrição complementar"
+    },
+    {
+        "name": "razao_social",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "Razão social do fornecedor"
+    },
+    {
+        "name": "valor_total",
+        "type": "FLOAT",
+        "mode": "NULLABLE",
+        "description": "Valor total do contrato"
+    },
+    {
+        "name": "solucao",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "Tipo de solução fornecida"
+    },
+    {
+        "name": "ente",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "Administração Pública"
+    },
+    {
+        "name": "tipo",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "Categoria geral do serviço/produto"
+    },
+    {
+        "name": "cloud",
+        "type": "BOOLEAN",
+        "mode": "NULLABLE",
+        "description": "Tipo de serviço em nuvem"
+    },
+    {
+        "name": "erp",
+        "type": "BOOLEAN",
+        "mode": "NULLABLE",
+        "description": "Gestão empresarial contratado"
+    },
+    {
+        "name": "software",
+        "type": "BOOLEAN",
+        "mode": "NULLABLE",
+        "description": "Software fornecido"
+    },
+    {
+        "name": "servico",
+        "type": "BOOLEAN",
+        "mode": "NULLABLE",
+        "description": "Serviço contratado"
+    },
+    {
+        "name": "saas",
+        "type": "BOOLEAN",
+        "mode": "NULLABLE",
+        "description": "Modelo SaaS"
+    },
+    {
+        "name": "paas",
+        "type": "BOOLEAN",
+        "mode": "NULLABLE",
+        "description": "Modelo PaaS"
+    },
+    {
+        "name": "iaas",
+        "type": "BOOLEAN",
+        "mode": "NULLABLE",
+        "description": "Modelo IaaS"
+    },
+    {
+        "name": "on_premise",
+        "type": "BOOLEAN",
+        "mode": "NULLABLE",
+        "description": "Infraestrutura local (on-premise)"
+    }
+]
