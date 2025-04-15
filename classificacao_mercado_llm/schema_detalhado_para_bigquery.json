@@ -3,31 +3,31 @@
         "name": "data",
         "type": "INTEGER",
         "mode": "NULLABLE",
-        "description": "Ano ou data da realização do processo de contratação ou licitação, utilizado para análise temporal dos contratos."
+        "description": "Ano da realização do processo de contratação ou licitação, utilizado para análise temporal dos contratos."
     },
     {
         "name": "orgao",
         "type": "STRING",
         "mode": "NULLABLE",
-        "description": "Nome completo do órgão público responsável pela contratação ou aquisição. Pode representar o cliente, entidade contratante, órgão licitante ou empresa pública envolvida no processo."
+        "description": "Nome completo do órgão público responsável pela licitação."
     },
     {
         "name": "uf",
         "type": "STRING",
         "mode": "NULLABLE",
-        "description": "A sigla UF significa Unidade Federativa (estados) onde está localizado o órgão contratante, esta coluna contém estados brasileiros."
+        "description": "Unidade Federativa, esta coluna contém estados brasileiros."
     },
     {
         "name": "cnpj",
         "type": "STRING",
         "mode": "NULLABLE",
-        "description": "Número do Cadastro Nacional da Pessoa Jurídica (CNPJ) da empresa ou instituição contratante, esta coluna contém CNPJ que está atrelado a coluna razao social na qual contém o nome do órgão."
+        "description": "Número do Cadastro Nacional da Pessoa Jurídica (CNPJ) da empresa licitante."
     },
     {
-        "name": "cliente totvs ativo ou inativo",
+        "name": "tipo_cliente_totvs",
         "type": "STRING",
         "mode": "NULLABLE",
-        "description": "Indica se a empresa contratada é um cliente ativo, inativo ou não cliente da TOTVS no momento da contratação."
+        "description": "Indica se a empresa contratante é um cliente ativo, inativo ou não é cliente da TOTVS"
     },
     {
         "name": "objeto",
@@ -48,10 +48,10 @@
         "description": "Descrição complementar com mais detalhes técnicos ou contextuais sobre o item ou serviço licitado."
     },      
     {
-        "name": "valor total",
+        "name": "valor",
         "type": "INTEGER",
         "mode": "NULLABLE",
-        "description": "Valor total do contrato ou item registrado, em reais (R$), desconsiderando parcelamentos ou aditivos. Os dados estão em formato numérico e devem ser formatados como moeda para fins de exibição."
+        "description": "Valor total do contrato em reais R$"
     },
     {
         "name": "solucao",
@@ -60,10 +60,10 @@
         "description": "Tipo de solução contratada, como software, serviço técnico, produto, módulo ou solução híbrida."    
     },
     {
-       "name": "tipo de entidade",
+       "name": "tipo_entidade",
        "type": "STRING",
        "mode": "NULLABLE",
-       "description": "Classificação institucional da entidade contratante, indicando a natureza jurídica ou organizacional do ente responsável pela contratação. Esta coluna pode conter os seguintes grupos:\\n\\n1. Administração Pública Direta: órgãos vinculados ao governo federal, estadual ou municipal, como secretarias, ministérios, prefeituras e câmaras.\\n\\n2. Administração Pública Indireta: entidades com personalidade jurídica própria, como autarquias (ex: INSS, ANVISA), fundações públicas, associações vinculadas ao poder público, empresas públicas (ex: Correios), sociedades de economia mista (ex: Petrobras, Banco do Brasil), organizações não governamentais com parcerias públicas e organizações sociais de interesse público (OSCIP).\\n\\n3. Sistema S: entidades privadas com finalidade pública, voltadas à capacitação e suporte empresarial, incluindo: Sistema S: entidades privadas com finalidade pública, voltadas à capacitação e suporte empresarial, incluindo: SENAI (Serviço Nacional de Aprendizagem Industrial), SENAC (Serviço Nacional de Aprendizagem do Comércio), SESI (Serviço Social da Indústria), SESC (Serviço Social do Comércio), SENAR (Serviço Nacional de Aprendizagem Rural), SEST (Serviço Social do Transporte), SENAT (Serviço Nacional de Aprendizagem do Transporte), SESCOOP (Serviço Nacional de Aprendizagem do Cooperativismo), SEBRAE (Serviço Brasileiro de Apoio às Micro e Pequenas Empresas).\\n\\nEssas classificações ajudam a entender o perfil institucional das contratações e identificar padrões conforme o tipo de ente público ou privado envolvido."
+       "description": "Classificação institucional da entidade contratante, pode ser: direta, indireta, conselho"
     },
     {
         "name": "tipo",
@@ -84,9 +84,9 @@
         "description": "Consolidação das modalidades de nuvem envolvidas na contratação (ex: SaaS, PaaS, IaaS, On-Premise)."
     },
     {
-        "name": "razao social",
+        "name": "nome_empressa",
         "type": "STRING",
         "mode": "NULLABLE",
-        "description": "Nome empresarial da organização participante do processo de licitação."    
+        "description": "nome da empresa vencedora da licitacao - edital"   
     }
 ]
