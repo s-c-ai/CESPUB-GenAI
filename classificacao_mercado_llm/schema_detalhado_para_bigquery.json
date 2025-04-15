@@ -78,7 +78,7 @@
         "description": "Indica se a solução contratada possui características de computação em nuvem (cloud computing)."
     },
     {
-        "name": "tipos_cloud",
+        "name": "tipo_cloud",
         "type": "STRING",
         "mode": "NULLABLE",
         "description": "Consolidação das modalidades de nuvem envolvidas na contratação (ex: SaaS, PaaS, IaaS, On-Premise)."
