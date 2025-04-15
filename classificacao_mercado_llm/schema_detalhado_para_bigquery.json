@@ -87,6 +87,6 @@
         "name": "razao social",
         "type": "STRING",
         "mode": "NULLABLE",
-        "description": "Nome empresarial da organização participante do processo de licitação, podendo representar o vencedor (contratado), concorrente, proponente ou licitante."    
+        "description": "Nome empresarial da organização participante do processo de licitação."    
     }
 ]
