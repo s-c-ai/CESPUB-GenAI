@@ -3,96 +3,90 @@
         "name": "data",
         "type": "INTEGER",
         "mode": "NULLABLE",
-        "description": "Ano ou data da realização do processo de contratação ou licitação, utilizado para análise temporal dos contratos, pode conter na planilha ano, mês e dia para a licitação na qual estamos analisando."
+        "description": "Ano da realização do processo de contratação ou licitação, utilizado para análise temporal dos contratos."
     },
     {
         "name": "orgao",
         "type": "STRING",
         "mode": "NULLABLE",
-        "description": "Nome completo do órgão público responsável pela contratação ou aquisição descrita no registro, pode conter nessa coluna cliente, entidade (ente), empresa, orgão, o órgão licitante, contratante."
+        "description": "Nome completo do órgão público responsável pela licitação."
     },
     {
         "name": "uf",
         "type": "STRING",
         "mode": "NULLABLE",
-        "description": "A sigla UF significa Unidade Federativa (estados) onde está localizado o órgão contratante, esta coluna contém região, estados brasileiros."
+        "description": "Unidade Federativa, esta coluna contém estados brasileiros."
     },
     {
         "name": "cnpj",
         "type": "STRING",
         "mode": "NULLABLE",
-        "description": "Número do Cadastro Nacional da Pessoa Jurídica (CNPJ) da empresa ou instituição contratante, esta coluna contém CNPJ que está atrelado a coluna razao social na qual contém o nome do órgão."
+        "description": "Número do Cadastro Nacional da Pessoa Jurídica (CNPJ) da empresa licitante."
     },
     {
-        "name": "cliente totvs ativo ou inativo",
+        "name": "tipo_cliente_totvs",
         "type": "STRING",
         "mode": "NULLABLE",
-        "description": "Indica se a empresa contratada é um cliente ativo, inativo ou não cliente da TOTVS no momento da contratação."
+        "description": "Indica se a empresa contratante é um cliente ativo, inativo ou não é cliente da TOTVS"
     },
     {
         "name": "objeto",
         "type": "STRING",
         "mode": "NULLABLE",
-        "description": "Texto descritivo do objeto do contrato ou licitação, geralmente com foco no que será fornecido ou executado, esta coluna contém exemplos como contrato, pregão, licitação e oportunidade."
+        "description": "Texto principal que descreve o objeto da contratação ou licitação, com foco geral no que será fornecido ou executado."
     },
     {
         "name": "descricao",
         "type": "STRING",
         "mode": "NULLABLE",
-        "description": "Descrição resumida do item ou serviço contratado, geralmente extraída do sistema de compras governamental, esta coluna contém exemplos como contrato, pregão, licitação e oportunidade."
+        "description": "Resumo do item ou serviço contratado, geralmente extraído diretamente dos sistemas de compras governamentais."
     },
     {
-        "name": "descricao comp",
+        "name": "descricao complementar",
         "type": "STRING",
         "mode": "NULLABLE",
-        "description": "Descrição complementar ou detalhada do objeto da contratação, fornecendo mais informações técnicas ou contextuais, esta coluna contém exemplos como contrato, pregão, licitação e oportunidade."
-    },
+        "description": "Descrição complementar com mais detalhes técnicos ou contextuais sobre o item ou serviço licitado."
+    },      
     {
-        "name": "razao social",
-        "type": "STRING",
-        "mode": "NULLABLE",
-        "description": "Nome empresarial completo da empresa fornecedora contratada para prestar o serviço ou entregar o produto, esta coluna contém licitante, vencedor (aquele que ganhou o contrato ou licitação), concorrente (quem disputou a licitação), competidor (quem competiu com a licitação), proponente (quem apresentou a proposta na licitação)."
-    },
-    {
-        "name": "valor total",
+        "name": "valor",
         "type": "INTEGER",
         "mode": "NULLABLE",
-        "description": "Valor total em reais (R$) do contrato ou item registrado, sem considerar os parcelamentos ou aditivos, essa coluna está no formato numeric e precisa ser transformada em reais (R$) para representar os valores dos contratos ganhos."
+        "description": "Valor total do contrato em reais R$"
     },
     {
         "name": "solucao",
         "type": "STRING",
         "mode": "NULLABLE",
-        "description": "Tipo de solução contratada, podendo incluir software, serviço técnico, solução híbrida, tipos de solução contratada como software, produto, módulo."
+        "description": "Tipo de solução contratada, como software, serviço técnico, produto, módulo ou solução híbrida."    
     },
     {
-        "name": "entidade",
-        "type": "STRING",
-        "mode": "NULLABLE",
-        "description": "Indica se o ente 'entidade' contratante pertence à administração pública direta 'governo' ou indireta 'autarquias, fundações, associações, empresas públicas, sociedade de ecônomia mista, particulares em colaboração, organizações não governamentais, organizações sociais de interesse público' (OSCIP), 'sistema S. que pode variar em Serviço Nacional de Aprendizagem Industrial (Senai), Serviço Nacional de Aprendizagem do Comércio (Senac), Serviço Social do Comércio (Sesc), Serviço Social da Indústria (Sesi), Serviço Nacional de Aprendizagem Rural (Senar), Serviço Nacional de Aprendizagem do Cooperativismo (Sescoop), Serviço Social de Aprendizagem do Transporte (Senat), Serviço Social de Transporte (Sest), Serviço Brasileiro de Apoio às Micro e Pequenas Empresas (Sebrae)')"
+       "name": "tipo_entidade",
+       "type": "STRING",
+       "mode": "NULLABLE",
+       "description": "Classificação institucional da entidade contratante, pode ser: direta, indireta, conselho"
     },
     {
-        "name": "tipo",
+        "name": "tipo_classificacao",
         "type": "STRING",
         "mode": "NULLABLE",
         "description": "Classificação geral do item ou serviço licitado, como 'software de gestão', 'serviço técnico', 'software de gestão'."
     },
     {
-        "name": "cloud",
+        "name": "tipo_solucao",
         "type": "STRING",
         "mode": "NULLABLE",
         "description": "Indica se a solução contratada possui características de computação em nuvem (cloud computing)."
     },
     {
-        "name": "tipos de cloud",
+        "name": "tipo_cloud",
         "type": "STRING",
         "mode": "NULLABLE",
         "description": "Consolidação das modalidades de nuvem envolvidas na contratação (ex: SaaS, PaaS, IaaS, On-Premise)."
     },
     {
-        "name": "razao social padronizada",
+        "name": "nome_empresa",
         "type": "STRING",
         "mode": "NULLABLE",
-        "description": "Versão padronizada do nome da empresa contratada, utilizada para unificar análises e reduzir ruído de grafia."
+        "description": "nome da empresa vencedora da licitacao - edital"   
     }
 ]
