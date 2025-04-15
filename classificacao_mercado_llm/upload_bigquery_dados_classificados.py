@@ -1,17 +1,20 @@
 import pandas as pd
+from pathlib import Path
 from google.oauth2 import service_account
 import pandas_gbq
 
-credentials_path = r"C:\Users\normu\Downloads\Telegram Desktop\credenciais_totvs.json"
-excel_path = r"C:\Users\normu\Downloads\Telegram Desktop\dados_completos_final.xlsx"
+
+pasta = Path("C:/Users/normu/Downloads/Telegram Desktop")
+credentials_path = pasta / "credenciais_totvs.json"
+excel_path = pasta / "dados_completos_final.xlsx"
 
 df = pd.read_excel(excel_path)
 
-project_id = ''
-table_id = ''
+project_id = 'seu-projeto-id'
+table_id = 'entrada.tabela_final'
 
 
-credentials = service_account.Credentials.from_service_account_file(credentials_path)
+credentials = service_account.Credentials.from_service_account_file(str(credentials_path))
 
 pandas_gbq.to_gbq(
     dataframe=df,
@@ -21,4 +24,4 @@ pandas_gbq.to_gbq(
     if_exists='append'
 )
 
-print("Upload de dados concluído com sucesso para 'entrada.tabela_final'!")
+print("Upload de dados concluído com sucesso para '{table_id}'!")
