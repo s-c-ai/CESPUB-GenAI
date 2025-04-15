@@ -42,7 +42,7 @@
         "description": "Resumo do item ou serviço contratado, geralmente extraído diretamente dos sistemas de compras governamentais."
     },
     {
-        "name": "descricao comp",
+        "name": "descricao complementar",
         "type": "STRING",
         "mode": "NULLABLE",
         "description": "Descrição complementar com mais detalhes técnicos ou contextuais sobre o item ou serviço licitado."
@@ -66,25 +66,25 @@
        "description": "Classificação institucional da entidade contratante, pode ser: direta, indireta, conselho"
     },
     {
-        "name": "tipo",
+        "name": "tipo_classificacao",
         "type": "STRING",
         "mode": "NULLABLE",
         "description": "Classificação geral do item ou serviço licitado, como 'software de gestão', 'serviço técnico', 'software de gestão'."
     },
     {
-        "name": "cloud",
+        "name": "tipo_solucao",
         "type": "STRING",
         "mode": "NULLABLE",
         "description": "Indica se a solução contratada possui características de computação em nuvem (cloud computing)."
     },
     {
-        "name": "tipos de cloud",
+        "name": "tipos_cloud",
         "type": "STRING",
         "mode": "NULLABLE",
         "description": "Consolidação das modalidades de nuvem envolvidas na contratação (ex: SaaS, PaaS, IaaS, On-Premise)."
     },
     {
-        "name": "nome_empressa",
+        "name": "nome_empresa",
         "type": "STRING",
         "mode": "NULLABLE",
         "description": "nome da empresa vencedora da licitacao - edital"   
