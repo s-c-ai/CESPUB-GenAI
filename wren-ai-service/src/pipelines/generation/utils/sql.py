@@ -225,14 +225,7 @@ TEXT_TO_SQL_RULES = """
 - ONLY CHOOSE columns belong to the tables mentioned in the database schema.
 - YOU MUST USE "JOIN" if you choose columns from multiple tables!
 - ALWAYS QUALIFY column names with their table name or table alias to avoid ambiguity (e.g., orders.OrderId, o.OrderId)
-- YOU MUST USE "lower(<table_name>.<column_name>) like lower(<value>)" function or "lower(<table_name>.<column_name>) = lower(<value>)" function for case-insensitive comparison!
-    - Use "lower(<table_name>.<column_name>) LIKE lower(<value>)" when:
-        - The user requests a pattern or partial match.
-        - The value is not specific enough to be a single, exact value.
-        - Wildcards (%) are needed to capture the pattern.
-    - Use "lower(<table_name>.<column_name>) = lower(<value>)" when:
-        - The user requests an exact, specific value.
-        - There is no ambiguity or pattern in the value.
+- ALWAYS USE "lower(<table_name>.<column_name>) like lower(%<value>%)" function for alphanumeric columns
 - ALWAYS CAST the date/time related field to "TIMESTAMP WITH TIME ZONE" type when using them in the query
     - example 1: CAST(properties_closedate AS TIMESTAMP WITH TIME ZONE)
     - example 2: CAST('2024-11-09 00:00:00' AS TIMESTAMP WITH TIME ZONE)
@@ -315,6 +308,7 @@ TEXT_TO_SQL_RULES = """
     - `=`
     - `<>`
     - `!=`
+    - `LIKE`
 - ONLY USE JSON_QUERY for querying fields if "json_type":"JSON" is identified in the columns comment, NOT the deprecated JSON_EXTRACT_SCALAR function.
     - DON'T USE CAST for JSON fields, ONLY USE the following funtions:
       - LAX_BOOL for boolean fields
