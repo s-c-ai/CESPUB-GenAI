@@ -9,6 +9,12 @@ import {
 
 export const GET: RequestHandler = async ({ url, cookies }) => {
   const code = url.searchParams.get("code");
+  const token = cookies.get("google_auth_token");
+
+  if (!code && !token) {
+    throw redirect(303, "/");
+  }
+
   const oAuth2Client = new OAuth2Client(
     CLIENT_ID,
     CLIENT_SECRET,
@@ -19,8 +25,8 @@ export const GET: RequestHandler = async ({ url, cookies }) => {
     try {
       const response = await oAuth2Client.getToken(code);
       const accessToken = response.tokens.access_token;
-      if(!accessToken) {
-        throw new Error("Access token not found")
+      if (!accessToken) {
+        throw new Error("Access token not found");
       }
 
       cookies.set("google_auth_token", accessToken, {
@@ -32,16 +38,9 @@ export const GET: RequestHandler = async ({ url, cookies }) => {
 
       oAuth2Client.setCredentials(response.tokens);
     } catch (err) {
-      console.error("Failed to retrieve access token", err)
+      console.error("Failed to retrieve access token", err);
       return new Response(`Something went wrong: ${err}`, { status: 500 });
     }
-  }
-
-  const user = oAuth2Client.credentials;
-
-  if (!user) {
-    console.log("Error while trying to get user");
-    return new Response("User not found", { status: 400 });
   }
 
   throw redirect(303, REDIRECT_WRENAI);
