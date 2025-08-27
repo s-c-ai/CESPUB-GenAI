@@ -121,3 +121,17 @@ services:
     depends_on:
       - wren-ai-service
       - wren-engine
+  wren-auth:
+    build:
+      context: ../wren-auth
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      CLIENT_ID: ${CLIENT_ID}
+      CLIENT_SECRET: ${CLIENT_SECRET}
+      REDIRECT_WRENAI: http://wren-ui:3000/home
+      REDIRECT_OAUTH: http://wren-ui:5173/oauth
+    ports:
+      - 5173:5173
+    networks:
+      - wren

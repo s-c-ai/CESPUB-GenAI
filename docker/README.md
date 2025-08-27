@@ -24,7 +24,7 @@ Path structure as following:
 
 ## How to start with OpenAI
 
-1. copy `.env.example` to `.env` and modify the OpenAI API key.
+1. copy `.env.example` to `.env` and modify the OpenAI API key and the CLIENT_ID e CLIENT_SECRET for Google Auth.
 2. copy `config.example.yaml` to `config.yaml` for AI service configuration.
 3. start all services: `docker-compose --env-file .env up -d`.
 4. stop all services: `docker-compose --env-file .env down`.

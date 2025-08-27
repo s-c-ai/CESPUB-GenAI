@@ -27,7 +27,7 @@ const StyledButton = styled(Button)<{ $isHighlight: boolean }>`
 const StyledHeader = styled(Header)`
   height: 48px;
   border-bottom: 1px solid var(--gray-5);
-  background: #2d3b53;
+  background: #0897e9;
   padding: 10px 16px;
 `;
 

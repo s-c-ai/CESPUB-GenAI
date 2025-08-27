@@ -26,6 +26,7 @@ import FieldBinaryOutlined from '@ant-design/icons/FieldBinaryOutlined';
 import MonitorOutlined from '@ant-design/icons/MonitorOutlined';
 import SwapOutlined from '@ant-design/icons/SwapOutlined';
 import ShareAltOutlined from '@ant-design/icons/ShareAltOutlined';
+import HomeOutlined from '@ant-design/icons/HomeOutlined';
 import { Binoculars, LightningCharge } from '@styled-icons/bootstrap';
 import MoreOutlined from '@ant-design/icons/MoreOutlined';
 import { Sparkles } from '@styled-icons/ionicons-outline';
@@ -101,6 +102,10 @@ export const SparklesIcon = styled(Sparkles)`
 export const BinocularsIcon = styled(Binoculars)`
   height: 16px;
   width: 14px;
+`;
+
+export const HomeIcon = styled(HomeOutlined)`
+  height: 1em;
 `;
 
 export const DiscordIcon = styled(Discord)`
