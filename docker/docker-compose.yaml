@@ -22,6 +22,8 @@ services:
     image: ghcr.io/canner/wren-engine:${WREN_ENGINE_VERSION}
     restart: on-failure
     platform: ${PLATFORM}
+    ports:
+      - "8080:${WREN_ENGINE_PORT}"
     expose:
       - ${WREN_ENGINE_PORT}
       - ${WREN_ENGINE_SQL_PORT}
@@ -37,6 +39,8 @@ services:
     image: ghcr.io/canner/wren-engine-ibis:${IBIS_SERVER_VERSION}
     restart: on-failure
     platform: ${PLATFORM}
+    ports:
+      - "8000:${IBIS_SERVER_PORT}"
     expose:
       - ${IBIS_SERVER_PORT}
     environment:
@@ -111,9 +115,6 @@ services:
       EXPERIMENTAL_ENGINE_RUST_VERSION: ${EXPERIMENTAL_ENGINE_RUST_VERSION}
       # configs
       WREN_PRODUCT_VERSION: ${WREN_PRODUCT_VERSION}
-    ports:
-      # HOST_PORT is the port you want to expose to the host machine
-      - ${HOST_PORT}:3000
     volumes:
       - data:/app/data
     networks:
@@ -131,7 +132,20 @@ services:
       CLIENT_SECRET: ${CLIENT_SECRET}
       REDIRECT_WRENAI: http://wren-ui:3000/home
       REDIRECT_OAUTH: http://wren-ui:5173/oauth
-    ports:
-      - 5173:5173
+      ORIGIN: http://localhost:${HOST_PORT}
     networks:
       - wren
+  nginx:
+    build:
+      context: ../nginx
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "${HOST_PORT:-80}:80"
+    networks:
+      - wren
+    depends_on:
+      - wren-ui
+      - wren-auth
+      - wren-engine
+        
