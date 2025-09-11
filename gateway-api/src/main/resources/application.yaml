@@ -1,0 +1,38 @@
+spring:
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      routes:
+        - id: wren-ui
+          uri: http://wren-ui:3000
+          predicates:
+            - Path=/ui/**
+        - id: wren-engine
+          uri: http://wren-engine:8080
+          predicates:
+            - Path=/api/*
+        - id: ibis-server
+          uri: http://ibis-server:6789
+          predicates:
+            - Path=/ibis/**
+        - id: wren-ai-service
+          uri: http://wren-ai-service:8001
+          predicates:
+            - Path=/ai/**
+server:
+  port: 8081
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoints:
+    health:
+      show-details: always
+    info:
+      enabled: true
+info:
+  app:
+    name: gateway-api
+    description: Gateway API for Wren
