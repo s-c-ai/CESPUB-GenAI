@@ -41,13 +41,13 @@ services:
       - ${IBIS_SERVER_PORT}
     environment:
       WREN_ENGINE_ENDPOINT: http://wren-engine:${WREN_ENGINE_PORT}
-    volumes:
-      - ${LOCAL_STORAGE:-.}:/usr/src/app/data
     networks:
       - wren
 
   wren-ai-service:
-    image: ghcr.io/canner/wren-ai-service:${WREN_AI_SERVICE_VERSION}
+    build:
+      context: ../wren-ai-service
+      dockerfile: Dockerfile
     restart: on-failure
     platform: ${PLATFORM}
     expose:
@@ -58,12 +58,11 @@ services:
       # sometimes the console won't show print messages,
       # using PYTHONUNBUFFERED: 1 can fix this
       PYTHONUNBUFFERED: 1
-      CONFIG_PATH: /app/config.yaml
+      CONFIG_PATH: /app/data/config.yaml
     env_file:
       - ${PROJECT_DIR}/.env
     volumes:
-      - ${PROJECT_DIR}/config.yaml:/app/config.yaml:ro
-      - ${PROJECT_DIR}/data:/app/data:ro
+      - ${PROJECT_DIR}/config.yaml:/app/data/config.yaml
     networks:
       - wren
     depends_on:
@@ -81,7 +80,9 @@ services:
       - wren
 
   wren-ui:
-    image: ghcr.io/canner/wren-ui:${WREN_UI_VERSION}
+    build:
+      context: ../wren-ui
+      dockerfile: Dockerfile
     restart: on-failure
     platform: ${PLATFORM}
     environment:
@@ -120,18 +121,17 @@ services:
     depends_on:
       - wren-ai-service
       - wren-engine
-
   wren-auth:
-      build:
-        context: ../wren-auth
-        dockerfile: Dockerfile
-      restart: always
-      environment:
-        CLIENT_ID: ${CLIENT_ID}
-        CLIENT_SECRET: ${CLIENT_SECRET}
-        REDIRECT_WRENAI: http://wren-ui:3000/home
-        REDIRECT_OAUTH: http://wren-ui:5173/oauth
-      ports:
-        - 5173:5173
-      networks:
-        - wren
+    build:
+      context: ../wren-auth
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      CLIENT_ID: ${CLIENT_ID}
+      CLIENT_SECRET: ${CLIENT_SECRET}
+      REDIRECT_WRENAI: http://wren-ui:3000/home
+      REDIRECT_OAUTH: http://wren-ui:5173/oauth
+    ports:
+      - 5173:5173
+    networks:
+      - wren
