@@ -1,22 +1,15 @@
-FROM maven:3.9.6-eclipse-temurin-21-alpine AS builder
+FROM eclipse-temurin:21-jdk-alpine
 
 WORKDIR /app
-
-COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
-RUN chmod +x ./mvnw
-RUN ./mvnw dependency:go-offline
+COPY .mvn .mvn
+
+RUN chmod +x mvnw
+RUN ./mvnw dependency:go-offline -B
 
 COPY src ./src
-
-RUN ./mvnw package -DskipTests
-
-FROM eclipse-temurin:21-jre-alpine
-
-WORKDIR /app
-
-COPY --from=builder /app/target/gateway-api-0.0.1-SNAPSHOT.jar ./gateway-api.jar
+RUN ./mvnw package -DskipTests -B
 
 EXPOSE 8081
 
-ENTRYPOINT ["java","-jar","gateway-api.jar"]
+CMD ["java", "-jar", "target/gateway-api-0.0.1-SNAPSHOT.jar"]
