@@ -47,7 +47,7 @@ services:
   wren-ai-service:
     build:
       context: ../wren-ai-service
-      dockerfile: Dockerfile
+      dockerfile: docker/Dockerfile
     restart: on-failure
     platform: ${PLATFORM}
     expose:
@@ -111,9 +111,9 @@ services:
       EXPERIMENTAL_ENGINE_RUST_VERSION: ${EXPERIMENTAL_ENGINE_RUST_VERSION}
       # configs
       WREN_PRODUCT_VERSION: ${WREN_PRODUCT_VERSION}
-    ports:
-      # HOST_PORT is the port you want to expose to the host machine
-      - ${HOST_PORT}:3000
+    # ports:
+    #   # HOST_PORT is the port you want to expose to the host machine
+    #   - ${HOST_PORT}:3000
     volumes:
       - data:/app/data
     networks:
@@ -129,9 +129,31 @@ services:
     environment:
       CLIENT_ID: ${CLIENT_ID}
       CLIENT_SECRET: ${CLIENT_SECRET}
-      REDIRECT_WRENAI: http://wren-ui:3000/home
+      REDIRECT_WRENAI: http://localhost:${HOST_PORT}/home
       REDIRECT_OAUTH: http://wren-ui:5173/oauth
     ports:
       - 5173:5173
     networks:
       - wren
+  
+  gateway-api:
+    build:
+      context: ../gateway-api
+      dockerfile: Dockerfile
+    restart: on-failure
+    platform: ${PLATFORM}
+    ports:
+      - ${HOST_PORT}:8081
+    environment:
+      # sometimes the console won't show print messages,
+      # using SPRING_OUTPUT_ANSI_ENABLED: ALWAYS can fix this
+      SPRING_OUTPUT_ANSI_ENABLED: ALWAYS
+    networks:
+      - wren
+    depends_on:
+      - wren-ui
+      - wren-engine
+      - wren-ai-service
+      - ibis-server
+      - wren-auth
+  
