@@ -1,43 +1,65 @@
 spring:
   cloud:
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: 
+              - "http://localhost:3000"
+              - "http://localhost:5173"
+            allowedMethods: [GET, POST, PUT, DELETE, OPTIONS]
+            allowedHeaders: "*"
+            allowCredentials: true
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
       routes:
         - id: wren-auth
           uri: http://wren-auth:5173
           predicates:
-            - Path=/oauth
+            - Path=/oauth/**
+          filters:
+            - RewritePath=/oauth/(?<path>.*), /$\{path}
+
         - id: wren-ai-service
           uri: http://wren-ai-service:5555
           predicates:
             - Path=/ai/**
+          filters:
+            - RewritePath=/ai/(?<path>.*), /$\{path}
+
         - id: wren-engine
           uri: http://wren-engine:8080
           predicates:
             - Path=/api/**
+          filters:
+            - RewritePath=/api/(?<path>.*), /$\{path}
+
         - id: ibis-server
           uri: http://ibis-server:8000
           predicates:
             - Path=/ibis/**
-        - id: wren-ui-subpaths
+          filters:
+            - RewritePath=/ibis/(?<path>.*), /$\{path}
+
+        - id: wren-ui
           uri: http://wren-ui:3000
           predicates:
             - Path=/**
-      
+
 server:
   port: 8081
+
 management:
   endpoints:
     web:
       exposure:
-        include: health,info
+        include: health,info,gateway
   endpoint:
-    health:
-      show-details: always
-    info:
+    gateway:
       enabled: true
-info:
-  app:
-    name: gateway-api
-    description: Gateway API for Wren
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web.server.adapter.HttpWebHandlerAdapter: DEBUG
+    reactor.netty.http.client: DEBUG
